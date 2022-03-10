@@ -1,0 +1,22 @@
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="inputGroup-sizing-default">To do</span>
+  </div>
+  <input type="text" class="form-control" placeholder="Start typing" aria-label="Default" [(ngModel)]="newNote">
+  <button type="button" class="btn btn-info" (click)="saveNote()">Add</button>
+</div>
+
+<table class="table table-stripped">
+  <tbody>
+    <tr *ngFor="let note of notes; let i = index;">
+      <th style="width: 5%"> {{i + 1}}</th>
+      <th style="width: 90%"> {{note.title}}</th>
+      <th style="width: 5%" (click)="delete(id)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24"
+          height="24">
+          <path fill-rule="evenodd"
+            d="M2.5 12a9.5 9.5 0 1119 0 9.5 9.5 0 01-19 0zM12 1C5.925 1 1 5.925 1 12s4.925 11 11 11 11-4.925 11-11S18.075 1 12 1zm6.25 11.75a.75.75 0 000-1.5H5.75a.75.75 0 000 1.5h12.5z">
+          </path>
+        </svg></th>
+    </tr>
+  </tbody>
+</table>
