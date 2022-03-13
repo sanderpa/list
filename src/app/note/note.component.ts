@@ -19,14 +19,14 @@ export class NoteComponent {
       note.isComplete = true;
       this.notes.push(note);
       this.newNote = '';
+      console.log(this.notes);
     } else {
       alert('Please enter new note before added it');
     }
   }
 
   delete(id: number) {
-    this.notes = this.notes.filter((v, i) => {
-      i !== id;
-    });
+    this.notes = this.notes.filter((e, i) => i !== id);
+    console.log(this.notes);
   }
 }
