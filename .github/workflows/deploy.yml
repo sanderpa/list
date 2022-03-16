@@ -18,11 +18,10 @@ jobs:
         uses: actions/checkout@v1
 
       - name: Install and build
-        working-directory: ./
         run: npm install && npm run build && cp docs/index.html docs/404.html
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@4.1.1
         with:
           branch: gh-pages
-          folder: list/docs
+          folder: docs
