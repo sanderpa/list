@@ -1,11 +1,14 @@
 name: GitHub Pages Deploy
 
 on:
+  push:
+    branches: [master]
   pull_request:
     types: [closed]
 
 permissions:
   pull-requests: write
+  push: write
 
 jobs:
   build:
@@ -19,15 +22,14 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v1
-        with:
-          token: ${{ secrets.CI_REPOSITORY_ACCESS_TOKEN }}
+
+      - name: Info
+        run: node --version
 
       - name: Install and build
         run: npm install && npm run build && cp docs/index.html docs/404.html
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@4.1.1
-        with:
-          token: ${{ secrets.GH_TOKEN }}
           branch: gh-pages
           folder: docs
