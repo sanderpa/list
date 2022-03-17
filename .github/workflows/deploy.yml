@@ -4,6 +4,9 @@ on:
   pull_request:
     types: [closed]
 
+permissions:
+  pull-requests: write
+
 jobs:
   build:
     if: github.event.action == 'closed' && github.event.pull_request.merged == true
@@ -16,6 +19,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v1
+        with:
+          token: ${{ secrets.CI_REPOSITORY_ACCESS_TOKEN }}
 
       - name: Install and build
         run: npm install && npm run build && cp docs/index.html docs/404.html
@@ -23,5 +28,6 @@ jobs:
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@4.1.1
         with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           branch: gh-pages
           folder: docs
