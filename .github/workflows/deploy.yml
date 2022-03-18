@@ -4,9 +4,6 @@ on:
   pull_request:
     types: [closed]
 
-permissions:
-  pull-requests: write
-
 jobs:
   build:
     if: github.event.action == 'closed' && github.event.pull_request.merged == true
@@ -19,9 +16,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v1
-
-      - name: Info
-        run: node --version
 
       - name: Install and build
         run: npm install && npm run build && cp docs/index.html docs/404.html
